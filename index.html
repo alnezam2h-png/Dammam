@@ -1,0 +1,1376 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التقويم الدراسي / للفصل الأول 1448 / 1449 هـ</title>
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-title" content="جدول القيادة">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#0f172a">
+    <link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f172a'/%3E%3Ctext x='50' y='62' font-size='50' text-anchor='middle'%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='20' fill='%230f172a'/%3E%3Ctext x='50' y='62' font-size='50' text-anchor='middle'%3E%F0%9F%9A%97%3C/text%3E%3C/svg%3E">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800;900&display=swap');
+        * { font-family: 'Tajawal', sans-serif; }
+
+        @media print {
+            .no-print { display: none !important; }
+            body { background: white !important; font-size: 10pt; }
+
+            /* the interactive card grid is never printed — one of the print-only layouts below replaces it */
+            #weeks-grid { display: none !important; }
+            #print-table-wrap, #print-matrix-wrap, #print-cards-wrap { display: none !important; }
+            body[data-print-style="days"] #print-table-wrap { display: block !important; }
+            body[data-print-style="teachers"] #print-matrix-wrap { display: block !important; }
+            body[data-print-style="cards"] #print-cards-wrap { display: block !important; }
+
+            #print-header { display: block !important; }
+
+            body[data-print-content="calendar-only"] #stats-grid,
+            body[data-print-content="calendar-only"] #info-card { display: none !important; }
+
+            /* shared table look for both the days-table and the teacher-matrix */
+            #print-table, #print-matrix { border: 1px solid #94a3b8; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            #print-table th, #print-table td, #print-matrix th, #print-matrix td {
+                border: 1px solid #cbd5e1;
+                padding: 3px 4px;
+                text-align: center;
+            }
+            #print-table thead th, #print-matrix thead th { background: #1e293b !important; color: #fff !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            #print-table .pt-week-cell, #print-matrix .pt-week-cell { background: #f1f5f9 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; font-weight: 900; }
+            #print-table .pt-holiday, #print-matrix .pt-holiday { background: #ecfdf5 !important; -webkit-print-color-adjust: exact; print-color-adjust: exact; color: #065f46; font-weight: bold; }
+
+            /* per-teacher print colors */
+            .pt-faisal   { background: #dbeafe !important; color: #1e3a8a !important; }
+            .pt-murtada  { background: #d1fae5 !important; color: #064e3b !important; }
+            .pt-jaafar   { background: #fef3c7 !important; color: #78350f !important; }
+            .pt-hussain  { background: #ede9fe !important; color: #4c1d95 !important; }
+            .pt-faisal, .pt-murtada, .pt-jaafar, .pt-hussain { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+
+            /* today marker + completed/past-day shading (matches the on-screen strikethrough behavior) */
+            .pt-today { outline: 2px solid #0f172a !important; outline-offset: -2px; position: relative; }
+            .pt-today::after { content: '★ اليوم'; display: block; font-size: 7px; font-weight: 900; }
+            .pt-past { opacity: 0.45; text-decoration: line-through; }
+
+            #print-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .pc-card { border: 1px solid #cbd5e1; border-radius: 6px; padding: 4px; break-inside: avoid; }
+            .pc-card-title { background: #1e293b; color: #fff; font-size: 9px; font-weight: 900; padding: 2px 4px; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .pc-day-row { font-size: 8px; padding: 1px 3px; display: flex; justify-content: space-between; }
+
+            body[data-print-layout="single"] #print-table, body[data-print-layout="single"] #print-matrix { font-size: 6.5px; }
+            body[data-print-layout="single"] #print-table th, body[data-print-layout="single"] #print-table td,
+            body[data-print-layout="single"] #print-matrix th, body[data-print-layout="single"] #print-matrix td { padding: 1px 2px; }
+            body[data-print-layout="single"] #print-cards { grid-template-columns: repeat(5, 1fr); }
+            body[data-print-layout="single"] .pc-card, body[data-print-layout="single"] .pc-card * { font-size: 6px !important; padding: 1px !important; }
+
+            body[data-print-size="a5"] #print-table, body[data-print-size="a5"] #print-matrix { font-size: 8px; }
+            body[data-print-size="a5"] #print-cards { grid-template-columns: repeat(2, 1fr); }
+
+            body[data-print-size="mobile"] #print-table, body[data-print-size="mobile"] #print-matrix { font-size: 9px; }
+            body[data-print-size="mobile"] #print-table th, body[data-print-size="mobile"] #print-table td,
+            body[data-print-size="mobile"] #print-matrix th, body[data-print-size="mobile"] #print-matrix td { padding: 4px; }
+            body[data-print-size="mobile"] #print-cards { grid-template-columns: 1fr; }
+        }
+
+        .print-only { display: none; }
+        @media print { .print-only { display: block !important; } }
+
+        .day-note-input { border: none; background: transparent; outline: none; }
+        .day-note-input:focus { background: rgba(255,255,255,0.6); border-radius: 6px; }
+        .swap-menu { min-width: 120px; }
+        .sched-cell-input { width: 100%; background: transparent; border: none; outline: none; text-align: center; font-size: 11px; }
+        .sched-cell-input:focus { background: #fef3c7; border-radius: 4px; }
+        .page-hidden { display: none !important; }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen pb-12">
+
+    <!-- Header Section -->
+    <header class="bg-slate-900 text-white pt-6 pb-6 px-4 shadow-xl no-print border-b-4 border-teal-500">
+        <div class="max-w-6xl mx-auto space-y-4">
+
+            <div class="text-center space-y-1">
+                <span class="inline-block bg-teal-500/20 text-teal-300 border border-teal-500/40 text-xs font-bold px-3 py-1 rounded-full mb-1">
+                    تطبيق معاينة التوزيع التفاعلي
+                </span>
+                <h1 class="text-xl sm:text-3xl font-black tracking-wide text-white">
+                    التقويم الدراسي / للفصل الأول 1448 / 1449 هـ
+                </h1>
+                <p id="plan-subtitle" class="text-xs sm:text-sm text-slate-400 font-semibold">جدول القيادة اليومية</p>
+                <p id="version-line" class="text-[10px] text-slate-500 font-bold"></p>
+            </div>
+
+            <!-- Page Nav + Lock -->
+            <div class="flex items-center gap-1.5 justify-center flex-wrap">
+                <button id="btn-page-cal" onclick="switchPage('calendar')" class="text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                    <i class="fa-solid fa-calendar-days"></i> التقويم
+                </button>
+                <button id="btn-page-sched" onclick="switchPage('schedule')" class="text-xs font-bold px-3 py-1.5 rounded-lg transition">
+                    <i class="fa-solid fa-table-list"></i> جدول الحصص
+                </button>
+                <button id="btn-lock" onclick="openLoginModal()" class="text-xs font-bold px-3 py-1.5 rounded-lg transition bg-slate-700 text-slate-300 hover:bg-slate-600">
+                    <i class="fa-solid fa-lock"></i> دخول المشرف
+                </button>
+            </div>
+
+            <!-- Active Status Bar -->
+            <div id="active-status-bar" class="bg-teal-900/40 border border-teal-500/40 rounded-xl px-3 py-2 text-[11px] font-bold text-teal-200 text-center hidden">
+            </div>
+
+            <!-- Plan Switcher -->
+            <div class="bg-slate-800 p-1.5 rounded-2xl border border-slate-700 flex items-center gap-1.5 shadow-inner">
+                <button id="btn-plan1" onclick="switchPlan(1)" class="flex-1 text-center font-black text-xs sm:text-sm px-3 py-2.5 rounded-xl transition">
+                    الخطة الأولى <span class="block font-normal text-[10px] opacity-80">يوم لكل معلم</span>
+                </button>
+                <button id="btn-plan2" onclick="switchPlan(2)" class="flex-1 text-center font-black text-xs sm:text-sm px-3 py-2.5 rounded-xl transition">
+                    الخطة الثانية <span class="block font-normal text-[10px] opacity-80">يومين لكل معلم بالتناوب</span>
+                </button>
+            </div>
+
+            <!-- Control Buttons -->
+            <div class="bg-slate-800 p-3 rounded-2xl border border-slate-700 flex flex-wrap items-center justify-between gap-3 shadow-inner">
+                <div class="flex items-center gap-2 text-xs font-bold text-amber-300">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <span id="equal-days-note">23 يوم قيادة متساوية لكل معلم</span>
+                </div>
+
+                <div class="flex items-center gap-2 flex-wrap">
+                    <button id="btn-activate" onclick="openActivateModal()" class="hidden bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-check-double"></i> اعتماد الخطة
+                    </button>
+                    <button id="btn-save" onclick="exportUpdatedFile()" class="hidden bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-floppy-disk"></i> حفظ ومشاركة
+                    </button>
+                    <button onclick="openInstallModal()" class="bg-slate-600 hover:bg-slate-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-mobile-screen-button"></i> تثبيت على الجوال
+                    </button>
+                    <button onclick="openPrintModal()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-print"></i> طباعة
+                    </button>
+                    <button onclick="checkForUpdate()" class="bg-cyan-700 hover:bg-cyan-600 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-cloud-arrow-down"></i> تحديث النسخة
+                    </button>
+                    <button onclick="toggleFilter('all')" class="bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                        <i class="fa-solid fa-arrows-rotate"></i> الكل
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <!-- Print-only Header (shown only when printing) -->
+    <div id="print-header" class="print-only max-w-6xl mx-auto px-4 pt-4 text-center">
+        <h1 class="text-lg font-black">التقويم الدراسي / للفصل الأول 1448 / 1449 هـ</h1>
+        <p id="print-plan-name" class="text-xs font-bold text-slate-600 mt-1"></p>
+    </div>
+
+    <!-- Print Options Modal -->
+    <div id="print-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
+            <div class="bg-slate-900 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-print"></i> خيارات الطباعة</h2>
+                <button onclick="closePrintModal()" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div class="p-4 space-y-5">
+                <div>
+                    <div class="text-xs font-black text-slate-700 mb-2">طريقة العرض</div>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-style" value="days" checked class="accent-teal-600">
+                            جدول أيام (الأسابيع صفوف، الأيام أعمدة)
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-style" value="teachers" class="accent-teal-600">
+                            جدول معلمين (الأسابيع صفوف، أسماء المعلمين أعمدة)
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-style" value="cards" class="accent-teal-600">
+                            مربعات لكل أسبوع
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-xs font-black text-slate-700 mb-2">المحتوى</div>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-content" value="with-stats" checked class="accent-teal-600">
+                            التقويم والإحصائيات
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-content" value="calendar-only" class="accent-teal-600">
+                            التقويم فقط
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-xs font-black text-slate-700 mb-2">حجم الورق</div>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-size" value="a4" checked class="accent-teal-600">
+                            A4
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-size" value="a5" class="accent-teal-600">
+                            A5
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-size" value="mobile" class="accent-teal-600">
+                            جوال (شاشة عادية)
+                        </label>
+                    </div>
+                </div>
+                <div>
+                    <div class="text-xs font-black text-slate-700 mb-2">عدد الصفحات</div>
+                    <div class="space-y-1.5">
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-layout" value="auto" checked class="accent-teal-600">
+                            تلقائي (توزيع طبيعي على عدة صفحات)
+                        </label>
+                        <label class="flex items-center gap-2 bg-slate-50 border border-slate-200 rounded-xl p-2.5 cursor-pointer text-xs font-bold">
+                            <input type="radio" name="print-layout" value="single" class="accent-teal-600">
+                            الكل في صفحة واحدة
+                        </label>
+                    </div>
+                </div>
+                <div class="bg-cyan-50 border border-cyan-200 text-cyan-800 text-[11px] font-bold p-2.5 rounded-xl">
+                    <i class="fa-solid fa-circle-info ml-1"></i>
+                    إن كانت الطباعة من الجوال غير مضبوطة، جرّب زر "حفظ كصورة" بدلاً منها — أدق وأسهل للمشاركة.
+                </div>
+            </div>
+            <div class="p-4 pt-0 flex flex-col gap-2">
+                <div class="flex gap-2">
+                    <button onclick="closePrintModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl transition">إلغاء</button>
+                    <button onclick="confirmPrint()" class="flex-1 bg-teal-600 hover:bg-teal-500 text-white font-bold text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-1.5"><i class="fa-solid fa-print"></i> طباعة</button>
+                </div>
+                <button onclick="saveAsImage()" class="w-full bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-1.5"><i class="fa-solid fa-camera"></i> حفظ كصورة (مناسب للجوال)</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Activate Plan Modal -->
+    <div id="activate-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm">
+            <div class="bg-emerald-700 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-check-double"></i> اعتماد الخطة</h2>
+                <button onclick="closeActivateModal()" class="text-emerald-200 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div class="p-4 space-y-4">
+                <p id="activate-desc" class="text-xs font-bold text-slate-600 leading-relaxed"></p>
+                <div>
+                    <label class="text-xs font-black text-slate-700 mb-1.5 block">تفعيل الخطة اعتباراً من تاريخ:</label>
+                    <input type="date" id="activate-date" class="w-full border border-slate-300 rounded-xl p-2.5 text-sm font-bold">
+                </div>
+                <div class="bg-amber-50 border border-amber-200 text-amber-800 text-[11px] font-bold p-2.5 rounded-xl">
+                    <i class="fa-solid fa-triangle-exclamation ml-1"></i>
+                    سيتم احتساب عدد الرحلات المنجزة قبل هذا التاريخ تلقائياً، وتوزيع الأيام المتبقية بالخطة الجديدة بحيث يتساوى إجمالي رحلات كل معلم (23 رحلة) بنهاية الفصل.
+                </div>
+            </div>
+            <div class="p-4 pt-0 flex gap-2">
+                <button onclick="closeActivateModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl transition">إلغاء</button>
+                <button onclick="confirmActivate()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 text-white font-bold text-xs py-2.5 rounded-xl transition flex items-center justify-center gap-1.5"><i class="fa-solid fa-check"></i> اعتماد والبدء</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="login-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xs">
+            <div class="bg-slate-800 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-lock"></i> دخول المشرف</h2>
+                <button onclick="closeLoginModal()" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div class="p-4 space-y-3">
+                <p class="text-xs font-bold text-slate-600">أدخل الرقم السري للتعديل (خاص بمرتضى):</p>
+                <input type="password" id="login-pin" inputmode="numeric" maxlength="8" onkeydown="if(event.key==='Enter')submitLogin()" class="w-full border border-slate-300 rounded-xl p-2.5 text-center text-lg font-black tracking-widest" placeholder="••••">
+                <p id="login-error" class="text-[11px] text-rose-600 font-bold hidden">رقم غير صحيح، حاول مجدداً.</p>
+            </div>
+            <div class="p-4 pt-0 flex gap-2">
+                <button onclick="closeLoginModal()" class="flex-1 bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs py-2.5 rounded-xl transition">إلغاء</button>
+                <button onclick="submitLogin()" class="flex-1 bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs py-2.5 rounded-xl transition">دخول</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cloud Update Modal -->
+    <div id="update-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
+            <div class="bg-cyan-700 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-cloud-arrow-down"></i> تحديث النسخة</h2>
+                <button onclick="closeUpdateModal()" class="text-cyan-200 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div id="update-modal-body" class="p-4 space-y-3 text-xs font-bold text-slate-700 leading-relaxed"></div>
+            <div class="p-4 pt-0">
+                <button onclick="closeUpdateModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs py-2.5 rounded-xl transition">حسناً</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Install Guide Modal -->
+    <div id="install-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm max-h-[90vh] overflow-y-auto">
+            <div class="bg-slate-800 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-mobile-screen-button"></i> تثبيت على شاشة الجوال</h2>
+                <button onclick="closeInstallModal()" class="text-slate-400 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div class="p-4 space-y-4 text-xs font-bold text-slate-700 leading-relaxed">
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-1.5">
+                    <p class="text-slate-900"><i class="fa-brands fa-apple ml-1"></i> آيفون (Safari):</p>
+                    <p>1) افتح الملف في متصفح Safari</p>
+                    <p>2) اضغط زر المشاركة <i class="fa-solid fa-arrow-up-from-bracket"></i> بالأسفل</p>
+                    <p>3) اختر "إضافة إلى الشاشة الرئيسية"</p>
+                </div>
+                <div class="bg-slate-50 border border-slate-200 rounded-xl p-3 space-y-1.5">
+                    <p class="text-slate-900"><i class="fa-brands fa-android ml-1"></i> أندرويد (Chrome):</p>
+                    <p>1) افتح الملف في متصفح Chrome</p>
+                    <p>2) اضغط القائمة ⋮ أعلى يمين الشاشة</p>
+                    <p>3) اختر "إضافة إلى الشاشة الرئيسية" أو "تثبيت التطبيق"</p>
+                </div>
+                <div class="bg-amber-50 border border-amber-200 text-amber-800 p-2.5 rounded-xl text-[11px]">
+                    بعدها ستظهر أيقونة الجدول 🚗 على شاشة الجوال الرئيسية مثل أي تطبيق، وتفتح مباشرة دون المرور بالمتصفح.
+                </div>
+            </div>
+            <div class="p-4 pt-0">
+                <button onclick="closeInstallModal()" class="w-full bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs py-2.5 rounded-xl transition">حسناً، فهمت</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Save & Share Guide Modal -->
+    <div id="save-guide-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-sm">
+            <div class="bg-violet-700 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-floppy-disk"></i> تم حفظ نسخة محدّثة</h2>
+                <button onclick="closeSaveGuideModal()" class="text-violet-200 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div class="p-4 space-y-3 text-xs font-bold text-slate-700 leading-relaxed">
+                <p id="save-guide-number" class="bg-violet-50 text-violet-800 border border-violet-200 rounded-xl p-2.5 text-center"></p>
+                <p>تم تنزيل ملف جديد يحتوي كل البيانات الحالية (الخطة المعتمدة، التبديلات، الملاحظات، جدول الحصص).</p>
+                <p class="text-violet-700"><i class="fa-solid fa-share-nodes ml-1"></i> للمشاركة مع بقية المعلمين:</p>
+                <p>أرسل هذا الملف المُنزَّل عبر واتساب أو الإيميل. عند فتحه سيرى كل معلم آخر التحديثات كما هي، ويمكنه إضافة تعديلاته ثم الضغط على "حفظ ومشاركة" لتوزيع نسخة جديدة محدثة بنفس الطريقة.</p>
+                <p class="text-slate-400 text-[10px]">ملاحظة: لا يوجد حفظ تلقائي في السحابة — كل تحديث يتطلب تنزيل الملف وإعادة مشاركته يدوياً.</p>
+            </div>
+            <div class="p-4 pt-0">
+                <button onclick="closeSaveGuideModal()" class="w-full bg-violet-600 hover:bg-violet-500 text-white font-bold text-xs py-2.5 rounded-xl transition">حسناً</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Swap Modal -->
+    <div id="swap-modal" class="hidden fixed inset-0 bg-slate-900/60 backdrop-blur-sm z-50 flex items-center justify-center p-4 no-print">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-xs">
+            <div class="bg-rose-600 text-white p-4 rounded-t-2xl flex items-center justify-between">
+                <h2 class="font-black text-sm flex items-center gap-2"><i class="fa-solid fa-right-left"></i> تبديل طارئ</h2>
+                <button onclick="closeSwapModal()" class="text-rose-200 hover:text-white text-lg leading-none">&times;</button>
+            </div>
+            <div class="p-4 space-y-3">
+                <p id="swap-desc" class="text-xs font-bold text-slate-600"></p>
+                <div id="swap-options" class="grid grid-cols-2 gap-2"></div>
+                <button onclick="clearSwap()" class="w-full text-[11px] font-bold text-slate-400 hover:text-rose-600 pt-1"><i class="fa-solid fa-rotate-left"></i> إلغاء التبديل والعودة للأصل</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- CALENDAR PAGE -->
+    <main id="page-calendar" class="max-w-6xl mx-auto px-4 mt-6 space-y-6">
+
+        <div id="today-box" class="bg-gradient-to-l from-slate-900 to-slate-800 text-white rounded-2xl p-4 sm:p-5 shadow-lg border border-slate-700 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <div class="flex items-center gap-3">
+                <div class="w-11 h-11 rounded-full bg-teal-500/20 border border-teal-500/50 flex items-center justify-center">
+                    <i class="fa-solid fa-calendar-day text-teal-300 text-lg"></i>
+                </div>
+                <div>
+                    <div class="text-[11px] text-slate-400 font-bold">اليوم</div>
+                    <div id="today-date" class="text-sm font-black">--</div>
+                </div>
+            </div>
+            <div id="today-driver-box" class="flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-xl">
+                <i class="fa-solid fa-car-side text-amber-300"></i>
+                <span id="today-driver-text" class="text-sm font-black">--</span>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3" id="stats-grid"></div>
+
+        <div class="bg-amber-500/10 border border-amber-500/30 text-amber-900 p-3.5 rounded-2xl text-xs font-bold space-y-1" id="info-card"></div>
+
+        <div id="weeks-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 print-grid"></div>
+
+    </main>
+
+    <!-- SCHEDULE PAGE -->
+    <main id="page-schedule" class="max-w-6xl mx-auto px-4 mt-6 space-y-4 page-hidden">
+        <div class="bg-slate-100 border border-slate-200 text-slate-500 text-[11px] font-bold p-2.5 rounded-xl">
+            <i class="fa-solid fa-circle-info ml-1"></i>
+            كل معلم من مدرسة مختلفة: مواقع الفسحة والصلاة وأوقات الحصص مستقلة تماماً لكل معلم — تعديلك على جدول معلم لا يؤثر على البقية.
+        </div>
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-3.5 flex flex-wrap items-center justify-between gap-3">
+            <div class="flex items-center gap-1.5 flex-wrap" id="sched-teacher-tabs"></div>
+            <button id="sched-edit-btn" onclick="toggleScheduleEdit()" class="hidden bg-slate-800 hover:bg-slate-700 text-white font-bold text-xs px-3.5 py-2 rounded-xl transition flex items-center gap-1.5 shadow">
+                <i class="fa-solid fa-pen"></i> <span id="sched-edit-label">تعديل الجدول</span>
+            </button>
+        </div>
+
+        <div id="sched-position-settings" class="hidden bg-amber-50 border border-amber-200 rounded-2xl p-3.5 flex flex-wrap gap-4 text-xs font-bold text-amber-900">
+            <div class="flex items-center gap-1.5">
+                <span>موضع الفسحة: بعد الحصة</span>
+                <select id="break-position-select" onchange="updateBreakPosition(this.value)" class="border border-amber-300 rounded-lg px-1.5 py-1 text-xs font-bold"></select>
+            </div>
+            <div class="flex items-center gap-1.5">
+                <span>موضع الصلاة: بعد الحصة</span>
+                <select id="prayer-position-select" onchange="updatePrayerPosition(this.value)" class="border border-amber-300 rounded-lg px-1.5 py-1 text-xs font-bold"></select>
+            </div>
+        </div>
+
+        <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-x-auto">
+            <table class="w-full text-center border-collapse min-w-[760px]" id="sched-table">
+            </table>
+        </div>
+
+        <div class="bg-slate-100 border border-slate-200 text-slate-500 p-3 rounded-2xl text-[11px] font-bold">
+            <i class="fa-solid fa-link ml-1"></i>
+            يرتبط هذا الجدول تلقائياً بالتقويم: إن كانت لدى المعلم المناوب حصة في (الحصة السادسة) أو (الحصة السابعة) في يوم قيادته، ستظهر إشارة بذلك بجانب اليوم في صفحة التقويم.
+        </div>
+    </main>
+
+    <!-- PRINT-ONLY COMPACT TABLE -->
+    <div id="print-table-wrap" class="hidden print:block max-w-6xl mx-auto px-4 mt-3">
+        <table id="print-table" class="w-full border-collapse text-[10px]"></table>
+    </div>
+
+    <!-- PRINT-ONLY TEACHER-COLUMN MATRIX -->
+    <div id="print-matrix-wrap" class="hidden print:block max-w-6xl mx-auto px-4 mt-3">
+        <table id="print-matrix" class="w-full border-collapse text-[10px]"></table>
+    </div>
+
+    <!-- PRINT-ONLY WEEKLY CARD BOXES -->
+    <div id="print-cards-wrap" class="hidden print:block max-w-6xl mx-auto px-4 mt-3">
+        <div id="print-cards"></div>
+    </div>
+
+    <script>
+        const teacherStyles = {
+            faisal: { name: "فيصل", bg: "bg-blue-100", text: "text-blue-900", border: "border-blue-300", dot: "bg-blue-500", ring: "ring-blue-500" },
+            murtada: { name: "مرتضى", bg: "bg-emerald-100", text: "text-emerald-900", border: "border-emerald-300", dot: "bg-emerald-500", ring: "ring-emerald-500" },
+            jaafar: { name: "جعفر", bg: "bg-amber-100", text: "text-amber-900", border: "border-amber-300", dot: "bg-amber-500", ring: "ring-amber-500" },
+            hussain: { name: "حسين", bg: "bg-purple-100", text: "text-purple-900", border: "border-purple-300", dot: "bg-purple-500", ring: "ring-purple-500" }
+        };
+        const teacherOrder = ["faisal","murtada","jaafar","hussain"];
+
+        const calendarData = [{"week": 1, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0623\u0648\u0644", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "23 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "10 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-23", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "24 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "11 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-24", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "25 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "12 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-25", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "26 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "13 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-26", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "27 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "14 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-27", "t1": "faisal", "t2": "jaafar"}]}, {"week": 2, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062b\u0627\u0646\u064a", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "30 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "17 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-30", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "31 \u0623\u063a\u0633\u0637\u0633 2026\u0645", "hijri": "18 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-08-31", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "1 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "19 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-01", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "2 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "20 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-02", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "3 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "21 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-03", "t1": "murtada", "t2": "faisal"}]}, {"week": 3, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062b\u0627\u0644\u062b", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "6 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "24 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-06", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "7 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "25 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-07", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "8 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "26 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-08", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "9 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "27 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-09", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "10 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "28 \u0631\u0628\u064a\u0639 \u0627\u0644\u0623\u0648\u0644 1448\u0647\u0640", "iso": "2026-09-10", "t1": "jaafar", "t2": "hussain"}]}, {"week": 4, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0631\u0627\u0628\u0639", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "13 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "2 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-13", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "14 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "3 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-14", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "15 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "4 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-15", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "16 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "5 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-16", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "17 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "6 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-17", "t1": "hussain", "t2": "murtada"}]}, {"week": 5, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062e\u0627\u0645\u0633", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "20 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "9 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-20", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "21 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "10 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-21", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "22 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "11 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-22", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "23 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "12 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-23", "isHoliday": true, "holidayTitle": "\u0627\u0644\u064a\u0648\u0645 \u0627\u0644\u0648\u0637\u0646\u064a"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "24 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "13 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-24", "isHoliday": true, "holidayTitle": "\u0627\u0644\u064a\u0648\u0645 \u0627\u0644\u0648\u0637\u0646\u064a"}]}, {"week": 6, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0633\u0627\u062f\u0633", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "27 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "16 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-27", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "28 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "17 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-28", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "29 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "18 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-29", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "30 \u0633\u0628\u062a\u0645\u0628\u0631 2026\u0645", "hijri": "19 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-09-30", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "1 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "20 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-01", "t1": "hussain", "t2": "murtada"}]}, {"week": 7, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0633\u0627\u0628\u0639", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "4 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "23 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-04", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "5 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "24 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-05", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "6 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "25 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-06", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "7 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "26 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-07", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "8 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "27 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-08", "t1": "faisal", "t2": "faisal"}]}, {"week": 8, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062b\u0627\u0645\u0646", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "11 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "30 \u0631\u0628\u064a\u0639 \u0627\u0644\u0622\u062e\u0631 1448\u0647\u0640", "iso": "2026-10-11", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "12 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "1 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-12", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "13 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "2 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-13", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "14 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "3 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-14", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "15 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "4 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-15", "t1": "murtada", "t2": "jaafar"}]}, {"week": 9, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062a\u0627\u0633\u0639", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "18 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "7 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-18", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "19 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "8 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-19", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "20 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "9 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-20", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "21 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "10 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-21", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "22 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "11 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-22", "t1": "jaafar", "t2": "murtada"}]}, {"week": 10, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0639\u0627\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "25 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "14 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-25", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "26 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "15 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-26", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "27 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "16 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-27", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "28 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "17 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-28", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "29 \u0623\u0643\u062a\u0648\u0628\u0631 2026\u0645", "hijri": "18 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-10-29", "t1": "hussain", "t2": "hussain"}]}, {"week": 11, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062d\u0627\u062f\u064a \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "1 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "21 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-01", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "2 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "22 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-02", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "3 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "23 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-03", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "4 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "24 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-04", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "5 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "25 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-05", "t1": "faisal", "t2": "jaafar"}]}, {"week": 12, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062b\u0627\u0646\u064a \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "8 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "28 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-08", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "9 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "29 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-09", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "10 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "30 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0623\u0648\u0644\u0649 1448\u0647\u0640", "iso": "2026-11-10", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "11 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "1 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-11", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "12 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "2 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-12", "t1": "murtada", "t2": "faisal"}]}, {"week": 13, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062b\u0627\u0644\u062b \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "15 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "5 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-15", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "16 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "6 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-16", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "17 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "7 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-17", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "18 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "8 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-18", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "19 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "9 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-19", "t1": "jaafar", "t2": "hussain"}]}, {"week": 14, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0631\u0627\u0628\u0639 \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": true, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "22 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "12 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-22", "isHoliday": true, "holidayTitle": "\u0625\u062c\u0627\u0632\u0629 \u0627\u0644\u062e\u0631\u064a\u0641"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "23 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "13 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-23", "isHoliday": true, "holidayTitle": "\u0625\u062c\u0627\u0632\u0629 \u0627\u0644\u062e\u0631\u064a\u0641"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "24 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "14 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-24", "isHoliday": true, "holidayTitle": "\u0625\u062c\u0627\u0632\u0629 \u0627\u0644\u062e\u0631\u064a\u0641"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "25 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "15 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-25", "isHoliday": true, "holidayTitle": "\u0625\u062c\u0627\u0632\u0629 \u0627\u0644\u062e\u0631\u064a\u0641"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "26 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "16 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-26", "isHoliday": true, "holidayTitle": "\u0625\u062c\u0627\u0632\u0629 \u0627\u0644\u062e\u0631\u064a\u0641"}]}, {"week": 15, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062e\u0627\u0645\u0633 \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "29 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "19 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-29", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "30 \u0646\u0648\u0641\u0645\u0628\u0631 2026\u0645", "hijri": "20 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-11-30", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "1 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "21 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-01", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "2 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "22 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-02", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "3 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "23 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-03", "t1": "hussain", "t2": "murtada"}]}, {"week": 16, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0633\u0627\u062f\u0633 \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "6 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "26 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-06", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "7 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "27 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-07", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "8 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "28 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-08", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "9 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "29 \u062c\u0645\u0627\u062f\u0649 \u0627\u0644\u0622\u062e\u0631\u0629 1448\u0647\u0640", "iso": "2026-12-09", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "10 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "1 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-10", "t1": "faisal", "t2": "faisal"}]}, {"week": 17, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0633\u0627\u0628\u0639 \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "13 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "4 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-13", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "14 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "5 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-14", "t1": "jaafar", "t2": "murtada"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "15 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "6 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-15", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "16 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "7 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-16", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "17 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "8 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-17", "t1": "murtada", "t2": "jaafar"}]}, {"week": 18, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062b\u0627\u0645\u0646 \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "20 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "11 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-20", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "21 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "12 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-21", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "22 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "13 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-22", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "23 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "14 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-23", "t1": "murtada", "t2": "faisal"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "24 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "15 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-24", "t1": "jaafar", "t2": "murtada"}]}, {"week": 19, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u062a\u0627\u0633\u0639 \u0639\u0634\u0631", "isSpecial": false, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "27 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "18 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-27", "t1": "hussain", "t2": "murtada"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "28 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "19 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-28", "t1": "faisal", "t2": "jaafar"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "29 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "20 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-29", "t1": "murtada", "t2": "jaafar"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "30 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "21 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-30", "t1": "jaafar", "t2": "hussain"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "31 \u062f\u064a\u0633\u0645\u0628\u0631 2026\u0645", "hijri": "22 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2026-12-31", "t1": "hussain", "t2": "hussain"}]}, {"week": 20, "title": "\u0627\u0644\u0623\u0633\u0628\u0648\u0639 \u0627\u0644\u0639\u0634\u0631\u0648\u0646", "isSpecial": true, "isHolidayWeek": false, "days": [{"d": "\u0627\u0644\u0623\u062d\u062f", "greg": "3 \u064a\u0646\u0627\u064a\u0631 2027\u0645", "hijri": "25 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2027-01-03", "t1": "faisal", "t2": "faisal"}, {"d": "\u0627\u0644\u0627\u062b\u0646\u064a\u0646", "greg": "4 \u064a\u0646\u0627\u064a\u0631 2027\u0645", "hijri": "26 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2027-01-04", "t1": "murtada", "t2": "murtada"}, {"d": "\u0627\u0644\u062b\u0644\u0627\u062b\u0627\u0621", "greg": "5 \u064a\u0646\u0627\u064a\u0631 2027\u0645", "hijri": "27 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2027-01-05", "t1": "jaafar", "t2": "jaafar"}, {"d": "\u0627\u0644\u0623\u0631\u0628\u0639\u0627\u0621", "greg": "6 \u064a\u0646\u0627\u064a\u0631 2027\u0645", "hijri": "28 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2027-01-06", "t1": "hussain", "t2": "hussain"}, {"d": "\u0627\u0644\u062e\u0645\u064a\u0633", "greg": "7 \u064a\u0646\u0627\u064a\u0631 2027\u0645", "hijri": "29 \u0631\u062c\u0628 1448\u0647\u0640", "iso": "2027-01-07", "t1": "faisal", "t2": "faisal", "tag": "\u062a\u0627\u0628\u0639 \u0644\u0644\u0641\u0635\u0644 \u0627\u0644\u062b\u0627\u0646\u064a"}]}]
+;
+
+        // Saved-state marker: when this file is exported via "حفظ ومشاركة", this line
+        // gets rewritten with the current data so the next person who opens the file
+        // picks up right where things were left off. Leave as null in the master file.
+        /*__SAVED_STATE_MARKER__*/ let savedState = null;
+
+        const dayNameToKey = {"الأحد":"sun","الاثنين":"mon","الثلاثاء":"tue","الأربعاء":"wed","الخميس":"thu"};
+
+        const planInfo = {
+            1: {
+                key: "t1",
+                cycle: ["faisal","murtada","jaafar","hussain"],
+                subtitle: "جدول القيادة اليومية (خطة يوم لكل معلم بالتناوب)",
+                note: "التوزيع يعتمد خطة (يوم واحد لكل معلم) بالتتابع بين المعلمين الأربعة يومياً.",
+                note2: "تم إدراج إجازة الخريف في الأسبوع الرابع عشر، والخميس من الأسبوع الأخير (العشرون) محسوب رسمياً لصالح الفصل الدراسي الثاني."
+            },
+            2: {
+                key: "t2",
+                cycle: ["faisal","faisal","murtada","murtada","jaafar","jaafar","hussain","hussain"],
+                subtitle: "جدول القيادة اليومية (الخطة الثانية: يومين لكل معلم بالتناوب)",
+                note: "التوزيع يعتمد خطة (يومين - يومين) لكل معلم بالتتابع: الأحد فيصل، الاثنين فيصل، الثلاثاء مرتضى، الأربعاء مرتضى، الخميس جعفر، ثم أحد الأسبوع التالي جعفر أيضاً، الاثنين حسين، الثلاثاء حسين، ثم تبدأ دورة جديدة.",
+                note2: "الأسبوع الأخير (العشرون) استُثني من نمط اليومين وجُعل يوماً بيوم لكل معلم؛ ليتساوى إجمالي أيام القيادة تماماً بين المعلمين الأربعة (23 يوماً لكل معلم). والخميس من الأسبوع الأخير محسوب رسمياً لصالح الفصل الدراسي الثاني."
+            }
+        };
+
+        let activePlan = 1;
+        let activeFilter = 'all';
+        let activePage = 'calendar';
+
+        // ---------------- ACCESS CONTROL ----------------
+        // Simple PIN gate to stop casual edits by other teachers who open the file.
+        // NOTE: this is NOT real security (the PIN is visible in the page source to
+        // anyone who inspects it) — it's a practical "don't touch" gate, not encryption.
+        const EDITOR_PIN = "2580"; // مرتضى — يمكن تغييره بسهولة هنا
+        let isEditor = false; // session-only, resets on reload/close (by design)
+
+        // ---------------- VERSION / SAVE TRACKING ----------------
+        const APP_VERSION = "6"; // يزيد رقمها مع كل تحديث أُصدره لكم
+        let saveNumber = 0;
+        let lastSaveDate = null; // ISO datetime of last "حفظ ومشاركة"
+
+        // ---------------- CLOUD UPDATE ----------------
+        // Fill this in once the file is hosted somewhere with a stable public URL
+        // (GitHub Pages / Netlify Drop / Cloudflare Pages — NOT a Google Drive preview link).
+        let REMOTE_UPDATE_URL = "https://alnezam2h-png.github.io/Dammam/";
+
+        // ---- flat ordered list of all days (for iteration/resolution) ----
+        const allDays = [];
+        calendarData.forEach(week => {
+            week.days.forEach(day => {
+                allDays.push(day);
+            });
+        });
+
+        // resolvedCache: iso -> teacher key (the "officially" driven / committed schedule)
+        // initialised to Plan1's static pattern, since Plan1 is the plan already assumed in force.
+        let resolvedCache = {};
+        allDays.forEach(day => {
+            if (!day.isHoliday) resolvedCache[day.iso] = day.t1;
+        });
+
+        let hasActivated = false;               // becomes true after first "اعتماد"
+        let currentActivatedPlan = null;
+        let currentActivatedSince = null;
+
+        // overridesStore: iso -> teacher key (manual emergency swap, wins over everything)
+        let overridesStore = {};
+        // notesStore: iso -> free text note
+        let notesStore = {};
+
+        function isViewingLivePlan() {
+            return hasActivated && activePlan === currentActivatedPlan;
+        }
+
+        function resolveDayTeacher(day) {
+            if (day.isHoliday) return null;
+            if (isViewingLivePlan()) {
+                if (overridesStore[day.iso]) return overridesStore[day.iso];
+                return resolvedCache[day.iso];
+            }
+            return day[planInfo[activePlan].key];
+        }
+
+        function todayISO() {
+            const now = new Date();
+            return now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+        }
+
+        function computeCounts() {
+            const counts = { faisal: 0, murtada: 0, jaafar: 0, hussain: 0 };
+            allDays.forEach(day => {
+                if (day.isHoliday || day.tag) return;
+                const t = resolveDayTeacher(day);
+                if (t) counts[t]++;
+            });
+            return counts;
+        }
+
+        function renderStats() {
+            const counts = computeCounts();
+            const grid = document.getElementById('stats-grid');
+            grid.innerHTML = '';
+            teacherOrder.forEach(key => {
+                const style = teacherStyles[key];
+                const div = document.createElement('div');
+                div.onclick = () => toggleFilter(key);
+                div.className = `cursor-pointer bg-white p-3.5 rounded-2xl border-2 ${style.border} hover:opacity-80 transition shadow-sm relative overflow-hidden`;
+                div.innerHTML = `
+                    <div class="flex justify-between items-center mb-1">
+                        <span class="text-xs font-bold text-slate-600">قيادة ${style.name}</span>
+                        <span class="w-3 h-3 rounded-full ${style.dot}"></span>
+                    </div>
+                    <div class="text-xl font-black ${style.text}">${counts[key]} <span class="text-xs text-slate-500 font-normal">يوم</span></div>
+                `;
+                grid.appendChild(div);
+            });
+            document.getElementById('equal-days-note').textContent = `${counts.faisal} يوم قيادة متساوية لكل معلم`;
+        }
+
+        function renderInfo() {
+            const info = planInfo[activePlan];
+            document.getElementById('info-card').innerHTML = `
+                <p>💡 <strong>ملاحظة هامة:</strong> ${info.note}</p>
+                <p>📌 ${info.note2}</p>
+            `;
+            let subtitlePrefix = '';
+            if (hasActivated) {
+                subtitlePrefix = isViewingLivePlan() ? 'الجدول الفعلي المعتمد حالياً — ' : 'معاينة فقط (غير معتمدة حالياً) — ';
+            }
+            document.getElementById('plan-subtitle').textContent = subtitlePrefix + info.subtitle;
+
+            const saveLabel = saveNumber > 0
+                ? `آخر حفظ: رقم ${saveNumber} — ${formatSaveDate(lastSaveDate)}`
+                : 'لم يُحفظ بعد';
+            document.getElementById('version-line').textContent = `الإصدار v${APP_VERSION} • ${saveLabel}`;
+        }
+
+        function formatSaveDate(iso) {
+            if (!iso) return '';
+            const d = new Date(iso);
+            return d.toLocaleDateString('ar-SA-u-ca-gregory', { year:'numeric', month:'long', day:'numeric' }) +
+                ' ' + d.toLocaleTimeString('ar-SA', { hour:'2-digit', minute:'2-digit' });
+        }
+
+        function renderActiveStatusBar() {
+            const bar = document.getElementById('active-status-bar');
+            if (!hasActivated) { bar.classList.add('hidden'); return; }
+            bar.classList.remove('hidden');
+            const planLabel = currentActivatedPlan === 2 ? 'الخطة الثانية' : 'الخطة الأولى';
+            const altLabel = currentActivatedPlan === 2 ? 'الخطة الأولى' : 'الخطة الثانية';
+            bar.innerHTML = `<i class="fa-solid fa-check-circle ml-1"></i> الخطة المعتمدة والعمل بها حالياً: <strong>${planLabel}</strong> اعتباراً من ${currentActivatedSince} — <span class="opacity-70">(${altLabel} أصبحت بديلاً)</span>`;
+        }
+
+        // ---------------- ACCESS CONTROL UI ----------------
+        function openLoginModal() {
+            if (isEditor) { logout(); return; }
+            document.getElementById('login-error').classList.add('hidden');
+            document.getElementById('login-pin').value = '';
+            document.getElementById('login-modal').classList.remove('hidden');
+        }
+        function closeLoginModal() { document.getElementById('login-modal').classList.add('hidden'); }
+        function submitLogin() {
+            const val = document.getElementById('login-pin').value;
+            if (val === EDITOR_PIN) {
+                isEditor = true;
+                closeLoginModal();
+                applyEditorUI();
+                renderAll();
+                if (activePage === 'schedule') renderSchedulePage();
+            } else {
+                document.getElementById('login-error').classList.remove('hidden');
+            }
+        }
+        function logout() {
+            isEditor = false;
+            schedEditMode = false;
+            applyEditorUI();
+            renderAll();
+            if (activePage === 'schedule') renderSchedulePage();
+        }
+        function applyEditorUI() {
+            const lockBtn = document.getElementById('btn-lock');
+            lockBtn.innerHTML = isEditor
+                ? '<i class="fa-solid fa-lock-open"></i> تسجيل الخروج (مرتضى)'
+                : '<i class="fa-solid fa-lock"></i> دخول المشرف';
+            lockBtn.className = isEditor
+                ? "text-xs font-bold px-3 py-1.5 rounded-lg transition bg-emerald-700 text-white"
+                : "text-xs font-bold px-3 py-1.5 rounded-lg transition bg-slate-700 text-slate-300 hover:bg-slate-600";
+            document.getElementById('btn-activate').classList.toggle('hidden', !isEditor);
+            document.getElementById('btn-save').classList.toggle('hidden', !isEditor);
+            document.getElementById('sched-edit-btn').classList.toggle('hidden', !isEditor);
+        }
+
+        function scheduleBadgesFor(day, teacher) {
+            if (!teacher) return '';
+            const dayKey = dayNameToKey[day.d];
+            const sched = teacherSchedules[teacher] && teacherSchedules[teacher][dayKey];
+            if (!sched) return '';
+            let badges = '';
+            if (sched.p6 && sched.p6.trim()) badges += `<span class="bg-indigo-100 text-indigo-700 text-[9px] font-bold px-1.5 py-0.5 rounded-md">ح6: ${sched.p6}</span>`;
+            if (sched.p7 && sched.p7.trim()) badges += `<span class="bg-indigo-100 text-indigo-700 text-[9px] font-bold px-1.5 py-0.5 rounded-md">ح7: ${sched.p7}</span>`;
+            return badges;
+        }
+
+        function renderWeeks() {
+            const container = document.getElementById('weeks-grid');
+            container.innerHTML = '';
+            const info = planInfo[activePlan];
+            const isLive = isViewingLivePlan();
+            const today = todayISO();
+
+            calendarData.forEach(item => {
+                if (activeFilter !== 'all' && !item.isHolidayWeek) {
+                    const exists = item.days.some(d => !d.isHoliday && resolveDayTeacher(d) === activeFilter);
+                    if (!exists) return;
+                }
+
+                const card = document.createElement('div');
+                card.className = `bg-white rounded-2xl border ${item.isSpecial ? 'border-amber-400 ring-2 ring-amber-200' : (item.isHolidayWeek ? 'border-emerald-400 ring-2 ring-emerald-200' : 'border-slate-200')} shadow-sm overflow-hidden flex flex-col justify-between card-box transition hover:shadow-md`;
+
+                let daysHTML = '';
+                item.days.forEach(day => {
+                    if (day.isHoliday) {
+                        daysHTML += `
+                            <div class="flex items-center justify-between p-2 rounded-xl bg-emerald-50 text-emerald-800 text-xs font-bold border border-emerald-200">
+                                <div class="flex flex-col">
+                                    <span>${day.d}</span>
+                                    <span class="text-[10px] font-normal text-emerald-600">${day.greg} • ${day.hijri}</span>
+                                </div>
+                                <span class="flex items-center gap-1"><i class="fa-solid fa-tree text-emerald-600"></i> ${day.holidayTitle}</span>
+                            </div>
+                        `;
+                    } else {
+                        const t = resolveDayTeacher(day);
+                        const style = teacherStyles[t];
+                        const isSelected = activeFilter === t;
+                        const isOverride = !!overridesStore[day.iso] && isLive;
+                        const noteVal = notesStore[day.iso] || '';
+                        const badges = scheduleBadgesFor(day, t);
+                        const isPast = isLive && day.iso < today;
+                        const isToday = day.iso === today;
+
+                        daysHTML += `
+                            <div class="p-2 rounded-xl text-xs font-bold ${style.bg} ${style.text} border ${isToday ? 'border-2 border-slate-800 ring-2 ring-slate-800/30' : style.border} ${isSelected ? 'ring-2 ring-slate-800' : ''} ${isPast ? 'opacity-50' : ''}">
+                                <div class="flex items-center justify-between">
+                                    <div class="flex flex-col">
+                                        <span>${day.d}${isToday ? ' <span class="bg-slate-800 text-white text-[9px] px-1.5 py-0.5 rounded-full font-black">اليوم</span>' : ''}</span>
+                                        <span class="text-[10px] font-normal opacity-70">${day.greg} • ${day.hijri}</span>
+                                    </div>
+                                    <div class="flex items-center gap-1.5">
+                                        <span class="${isPast ? 'line-through' : ''}">${style.name}${isOverride ? ' <i class="fa-solid fa-triangle-exclamation text-rose-600 text-[10px]" title="تبديل طارئ"></i>' : ''}</span>
+                                        ${isPast ? '<i class="fa-solid fa-circle-check text-emerald-600 text-[11px]" title="تم"></i>' : ''}
+                                        ${day.tag ? `<span class="bg-amber-500 text-slate-900 text-[10px] px-2 py-0.5 rounded-full font-black">${day.tag}</span>` : ''}
+                                        ${(isEditor && isLive) ? `<button class="swap-btn no-print text-slate-500 hover:text-rose-600" onclick="openSwapModal('${day.iso}','${day.d}')" title="تبديل طارئ">
+                                            <i class="fa-solid fa-right-left"></i>
+                                        </button>` : ''}
+                                    </div>
+                                </div>
+                                ${badges ? `<div class="flex items-center gap-1 mt-1.5 flex-wrap">${badges}</div>` : ''}
+                                ${(isEditor || noteVal) ? `<div class="mt-1.5 flex items-center gap-1 bg-white/50 rounded-lg px-1.5 py-1">
+                                    <i class="fa-solid fa-note-sticky text-[10px] opacity-60"></i>
+                                    ${isEditor
+                                        ? `<input class="day-note-input flex-1 text-[10px] font-normal" placeholder="ملاحظة (مثال: موعد تبديل)" value="${noteVal.replace(/"/g,'&quot;')}" oninput="notesStore['${day.iso}']=this.value" />`
+                                        : `<span class="flex-1 text-[10px] font-normal">${noteVal.replace(/</g,'&lt;')}</span>`}
+                                </div>` : ''}
+                            </div>
+                        `;
+                    }
+                });
+
+                card.innerHTML = `
+                    <div class="bg-slate-800 text-white p-2.5 flex justify-between items-center">
+                        <span class="font-bold text-xs sm:text-sm">${item.title}${item.isHolidayWeek ? ' <i class="fa-solid fa-leaf text-emerald-400 text-[10px]"></i>' : ''}</span>
+                        <span class="bg-slate-700 text-slate-300 text-[10px] px-2 py-0.5 rounded-full font-bold">أسبوع ${item.week}</span>
+                    </div>
+                    <div class="p-2.5 space-y-2">
+                        ${daysHTML}
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+        }
+
+        function findDayByISO(iso) {
+            for (const day of allDays) if (day.iso === iso) return day;
+            return null;
+        }
+
+        function resolveLiveDayTeacher(day) {
+            if (day.isHoliday) return null;
+            if (overridesStore[day.iso]) return overridesStore[day.iso];
+            return resolvedCache[day.iso];
+        }
+
+        function renderTodayBox() {
+            const now = new Date();
+            const todayISOVal = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+
+            const gregOpts = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            document.getElementById('today-date').textContent = now.toLocaleDateString('ar-SA-u-ca-gregory', gregOpts);
+
+            const found = findDayByISO(todayISOVal);
+            const box = document.getElementById('today-driver-box');
+            const textEl = document.getElementById('today-driver-text');
+
+            if (!found) {
+                box.className = "flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-xl";
+                textEl.textContent = "خارج نطاق جدول الفصل الدراسي الحالي";
+                return;
+            }
+            if (found.isHoliday) {
+                box.className = "flex items-center gap-2 bg-emerald-500/15 border border-emerald-400/40 px-4 py-2 rounded-xl";
+                textEl.innerHTML = `<i class="fa-solid fa-tree ml-1"></i> إجازة اليوم: ${found.holidayTitle}`;
+                return;
+            }
+            const t = resolveLiveDayTeacher(found);
+            const style = teacherStyles[t];
+            const badges = scheduleBadgesFor(found, t);
+            box.className = "flex items-center gap-2 bg-white/5 border border-white/10 px-4 py-2 rounded-xl";
+            textEl.innerHTML = `اليوم يقود: <span class="${style.text} bg-white px-2 py-0.5 rounded-lg mr-1">${style.name}</span>${found.tag ? ` <span class="text-amber-300 text-[10px]">(${found.tag})</span>` : ''}${badges ? ` ${badges}` : ''}`;
+        }
+
+        function renderPrintTable() {
+            const table = document.getElementById('print-table');
+            if (!table) return;
+            const isLive = isViewingLivePlan();
+            const today = todayISO();
+            let html = '<thead><tr>';
+            html += '<th>الأسبوع</th>';
+            weekDays.forEach(d => html += `<th>${d.label}</th>`);
+            html += '</tr></thead><tbody>';
+
+            calendarData.forEach(item => {
+                html += '<tr>';
+                html += `<td class="pt-week-cell">${item.week}</td>`;
+                if (item.isHolidayWeek) {
+                    const first = item.days[0];
+                    html += `<td colspan="5" class="pt-holiday"><i class="fa-solid fa-tree"></i> ${first.holidayTitle} (${item.days[0].greg.split(' ').slice(0,2).join(' ')} - ${item.days[4].greg.split(' ').slice(0,2).join(' ')})</td>`;
+                } else {
+                    item.days.forEach(day => {
+                        if (day.isHoliday) {
+                            html += `<td class="pt-holiday">${day.holidayTitle}</td>`;
+                        } else {
+                            const t = resolveDayTeacher(day);
+                            const shortDate = day.greg.split(' ').slice(0,2).join(' ');
+                            const isPast = isLive && day.iso < today;
+                            const isToday = day.iso === today;
+                            const cls = `pt-${t}${isToday ? ' pt-today' : ''}${isPast ? ' pt-past' : ''}`;
+                            html += `<td class="${cls}">${teacherStyles[t].name}<br><span style="font-weight:normal;opacity:.7">${shortDate}</span>${day.tag ? ' <span style="font-size:8px">*ف٢</span>' : ''}</td>`;
+                        }
+                    });
+                }
+                html += '</tr>';
+            });
+            html += '</tbody>';
+            table.innerHTML = html;
+        }
+
+        function renderPrintMatrix() {
+            const table = document.getElementById('print-matrix');
+            if (!table) return;
+            const isLive = isViewingLivePlan();
+            const today = todayISO();
+            const dayAbbrev = {sun:'أحد', mon:'اثنين', tue:'ثلاثاء', wed:'أربعاء', thu:'خميس'};
+
+            let html = '<thead><tr><th>الأسبوع</th>';
+            teacherOrder.forEach(t => html += `<th>${teacherStyles[t].name}</th>`);
+            html += '</tr></thead><tbody>';
+
+            calendarData.forEach(item => {
+                html += '<tr>';
+                html += `<td class="pt-week-cell">${item.week}</td>`;
+                if (item.isHolidayWeek) {
+                    html += `<td colspan="${teacherOrder.length}" class="pt-holiday"><i class="fa-solid fa-tree"></i> ${item.days[0].holidayTitle}</td>`;
+                } else {
+                    const byTeacher = {};
+                    teacherOrder.forEach(t => byTeacher[t] = []);
+                    let rowHasToday = false, rowHasPast = false;
+                    item.days.forEach(day => {
+                        if (day.isHoliday) return;
+                        const t = resolveDayTeacher(day);
+                        const dayKey = dayNameToKey[day.d];
+                        const isToday = day.iso === today;
+                        const isPast = isLive && day.iso < today;
+                        byTeacher[t].push(`${dayAbbrev[dayKey]}${isToday ? ' ★' : ''}${isPast ? ' ✓' : ''}`);
+                    });
+                    teacherOrder.forEach(t => {
+                        const cellHasContent = byTeacher[t].length > 0;
+                        html += `<td class="${cellHasContent ? 'pt-'+t : ''}">${byTeacher[t].join('، ') || '—'}</td>`;
+                    });
+                }
+                html += '</tr>';
+            });
+            html += '</tbody>';
+            table.innerHTML = html;
+        }
+
+        function renderPrintCards() {
+            const container = document.getElementById('print-cards');
+            if (!container) return;
+            const isLive = isViewingLivePlan();
+            const today = todayISO();
+            let html = '';
+            calendarData.forEach(item => {
+                html += `<div class="pc-card"><div class="pc-card-title">أسبوع ${item.week} — ${item.title}</div>`;
+                if (item.isHolidayWeek) {
+                    html += `<div class="pc-day-row pt-holiday">${item.days[0].holidayTitle}</div>`;
+                } else {
+                    item.days.forEach(day => {
+                        if (day.isHoliday) {
+                            html += `<div class="pc-day-row pt-holiday"><span>${day.d}</span><span>${day.holidayTitle}</span></div>`;
+                        } else {
+                            const t = resolveDayTeacher(day);
+                            const isToday = day.iso === today;
+                            const isPast = isLive && day.iso < today;
+                            const cls = `pc-day-row pt-${t}${isToday ? ' pt-today' : ''}${isPast ? ' pt-past' : ''}`;
+                            html += `<div class="${cls}"><span>${day.d}</span><span>${teacherStyles[t].name}</span></div>`;
+                        }
+                    });
+                }
+                html += '</div>';
+            });
+            container.innerHTML = html;
+        }
+
+        function renderAll() {
+            renderInfo();
+            renderActiveStatusBar();
+            renderStats();
+            renderWeeks();
+            renderTodayBox();
+            renderPrintTable();
+            renderPrintMatrix();
+            renderPrintCards();
+        }
+
+        function toggleFilter(teacherKey) {
+            activeFilter = teacherKey;
+            renderWeeks();
+        }
+
+        function switchPlan(n) {
+            activePlan = n;
+            document.getElementById('btn-plan1').className = n === 1
+                ? "flex-1 text-center font-black text-xs sm:text-sm px-3 py-2.5 rounded-xl transition bg-teal-600 text-white shadow"
+                : "flex-1 text-center font-black text-xs sm:text-sm px-3 py-2.5 rounded-xl transition text-slate-300 hover:bg-slate-700";
+            document.getElementById('btn-plan2').className = n === 2
+                ? "flex-1 text-center font-black text-xs sm:text-sm px-3 py-2.5 rounded-xl transition bg-teal-600 text-white shadow"
+                : "flex-1 text-center font-black text-xs sm:text-sm px-3 py-2.5 rounded-xl transition text-slate-300 hover:bg-slate-700";
+            activeFilter = 'all';
+            renderAll();
+        }
+
+        function switchPage(page) {
+            activePage = page;
+            document.getElementById('page-calendar').classList.toggle('page-hidden', page !== 'calendar');
+            document.getElementById('page-schedule').classList.toggle('page-hidden', page !== 'schedule');
+            document.getElementById('btn-page-cal').className = page === 'calendar'
+                ? "text-xs font-bold px-3 py-1.5 rounded-lg transition bg-teal-600 text-white"
+                : "text-xs font-bold px-3 py-1.5 rounded-lg transition text-slate-300 hover:bg-slate-700";
+            document.getElementById('btn-page-sched').className = page === 'schedule'
+                ? "text-xs font-bold px-3 py-1.5 rounded-lg transition bg-teal-600 text-white"
+                : "text-xs font-bold px-3 py-1.5 rounded-lg transition text-slate-300 hover:bg-slate-700";
+            if (page === 'schedule') renderSchedulePage();
+        }
+
+        // ---------------- ACTIVATE PLAN ----------------
+        function openActivateModal() {
+            if (!isEditor) return;
+            const info = planInfo[activePlan];
+            const planLabel = activePlan === 1 ? 'الأولى (يوم لكل معلم)' : 'الثانية (يومين لكل معلم)';
+            document.getElementById('activate-desc').textContent = `سيتم اعتماد الخطة ${planLabel} كخطة العمل الرسمية، وتصبح الخطة الأخرى بديلاً.`;
+            const dateInput = document.getElementById('activate-date');
+            const now = new Date();
+            dateInput.value = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+            document.getElementById('activate-modal').classList.remove('hidden');
+        }
+        function closeActivateModal() { document.getElementById('activate-modal').classList.add('hidden'); }
+
+        function confirmActivate() {
+            const fromISO = document.getElementById('activate-date').value;
+            if (!fromISO) return;
+            activatePlan(activePlan, fromISO);
+            closeActivateModal();
+            renderAll();
+        }
+
+        function activatePlan(planNum, fromISO) {
+            const cycle = planInfo[planNum].cycle;
+
+            // 1. tally counts already resolved before fromISO
+            const counts = { faisal: 0, murtada: 0, jaafar: 0, hussain: 0 };
+            const remaining = [];
+            allDays.forEach(day => {
+                if (day.isHoliday) return;
+                if (day.iso < fromISO) {
+                    const t = overridesStore[day.iso] || resolvedCache[day.iso];
+                    if (t && !day.tag) counts[t]++;
+                } else {
+                    remaining.push(day);
+                }
+            });
+
+            const target = 23; // total working days (92) / 4 teachers
+            const needed = {};
+            teacherOrder.forEach(k => needed[k] = Math.max(0, target - counts[k]));
+
+            // separate term2-tagged day(s) out of the balancing loop
+            const normalRemaining = remaining.filter(d => !d.tag);
+            const tagRemaining = remaining.filter(d => d.tag);
+
+            let pointer = 0;
+            normalRemaining.forEach(day => {
+                let tries = 0;
+                while (needed[cycle[pointer % cycle.length]] <= 0 && tries < cycle.length) {
+                    pointer++; tries++;
+                }
+                const t = cycle[pointer % cycle.length];
+                resolvedCache[day.iso] = t;
+                needed[t]--;
+                pointer++;
+            });
+            tagRemaining.forEach(day => {
+                const t = cycle[pointer % cycle.length];
+                resolvedCache[day.iso] = t;
+                pointer++;
+            });
+
+            hasActivated = true;
+            currentActivatedPlan = planNum;
+            currentActivatedSince = fromISO;
+        }
+
+        // ---------------- EMERGENCY SWAP ----------------
+        let swapTargetISO = null;
+        function openSwapModal(iso, dayLabel) {
+            if (!isEditor) return;
+            swapTargetISO = iso;
+            const day = findDayByISO(iso);
+            const current = resolveDayTeacher(day);
+            document.getElementById('swap-desc').textContent = `اختر المعلم البديل ليوم ${dayLabel} (${day.greg}):`;
+            const opts = document.getElementById('swap-options');
+            opts.innerHTML = '';
+            teacherOrder.forEach(key => {
+                const style = teacherStyles[key];
+                const btn = document.createElement('button');
+                btn.className = `p-2.5 rounded-xl text-xs font-bold border-2 ${style.bg} ${style.text} ${style.border} ${current === key ? 'ring-2 ring-slate-800' : ''}`;
+                btn.textContent = style.name;
+                btn.onclick = () => { overridesStore[iso] = key; closeSwapModal(); renderAll(); };
+                opts.appendChild(btn);
+            });
+            document.getElementById('swap-modal').classList.remove('hidden');
+        }
+        function closeSwapModal() { document.getElementById('swap-modal').classList.add('hidden'); }
+        function clearSwap() {
+            if (swapTargetISO) delete overridesStore[swapTargetISO];
+            closeSwapModal();
+            renderAll();
+        }
+
+        // ---------------- PRINT ----------------
+        function openPrintModal() { document.getElementById('print-modal').classList.remove('hidden'); }
+        function closePrintModal() { document.getElementById('print-modal').classList.add('hidden'); }
+        function getSelectedRadio(name) {
+            const el = document.querySelector(`input[name="${name}"]:checked`);
+            return el ? el.value : null;
+        }
+        function applyPrintPageSize(size) {
+            let rule = '';
+            if (size === 'a4') rule = '@page { size: A4 portrait; margin: 10mm; }';
+            else if (size === 'a5') rule = '@page { size: A5 portrait; margin: 6mm; }';
+            else if (size === 'mobile') rule = '@page { margin: 6mm; }'; // let the browser/OS pick a normal page size — a huge custom height breaks most mobile print-to-PDF engines
+            let styleTag = document.getElementById('dynamic-page-style');
+            if (!styleTag) {
+                styleTag = document.createElement('style');
+                styleTag.id = 'dynamic-page-style';
+                document.head.appendChild(styleTag);
+            }
+            styleTag.textContent = rule;
+        }
+        function confirmPrint() {
+            const content = getSelectedRadio('print-content');
+            const size = getSelectedRadio('print-size');
+            const layout = getSelectedRadio('print-layout');
+            const style = getSelectedRadio('print-style');
+            document.body.setAttribute('data-print-content', content);
+            document.body.setAttribute('data-print-size', size);
+            document.body.setAttribute('data-print-layout', layout);
+            document.body.setAttribute('data-print-style', style);
+            applyPrintPageSize(size);
+            document.getElementById('print-plan-name').textContent = hasActivated
+                ? `الجدول المعتمد (${currentActivatedPlan === 2 ? 'الخطة الثانية' : 'الخطة الأولى'})`
+                : planInfo[activePlan].subtitle;
+            renderPrintTable();
+            renderPrintMatrix();
+            renderPrintCards();
+            closePrintModal();
+            setTimeout(() => window.print(), 100);
+        }
+
+        function captureNodeForImage(style) {
+            document.body.setAttribute('data-print-style', style);
+            if (style === 'days') return document.getElementById('print-table-wrap');
+            if (style === 'teachers') return document.getElementById('print-matrix-wrap');
+            return document.getElementById('print-cards-wrap');
+        }
+
+        function saveAsImage() {
+            const style = getSelectedRadio('print-style');
+            renderPrintTable();
+            renderPrintMatrix();
+            renderPrintCards();
+            const node = captureNodeForImage(style);
+            node.classList.remove('hidden');
+            node.style.background = '#ffffff';
+            node.style.padding = '10px';
+
+            html2canvas(node, { backgroundColor: '#ffffff', scale: 2 }).then(canvas => {
+                node.classList.add('hidden');
+                node.style.background = '';
+                node.style.padding = '';
+                canvas.toBlob(blob => {
+                    const url = URL.createObjectURL(blob);
+                    const a = document.createElement('a');
+                    a.href = url;
+                    a.download = 'جدول_القيادة.png';
+                    document.body.appendChild(a);
+                    a.click();
+                    a.remove();
+                    setTimeout(() => URL.revokeObjectURL(url), 4000);
+                });
+            }).catch(() => {
+                node.classList.add('hidden');
+                node.style.background = '';
+                node.style.padding = '';
+                alert('تعذّر إنشاء الصورة — جرّب زر الطباعة العادي بدلاً منها.');
+            });
+            closePrintModal();
+        }
+
+        // ---------------- CLOUD UPDATE ----------------
+        function openUpdateModal() { document.getElementById('update-modal').classList.remove('hidden'); }
+        function closeUpdateModal() { document.getElementById('update-modal').classList.add('hidden'); }
+
+        function checkForUpdate() {
+            const body = document.getElementById('update-modal-body');
+            if (!REMOTE_UPDATE_URL) {
+                body.innerHTML = `
+                    <p>لم يتم ربط هذه النسخة برابط سحابي بعد.</p>
+                    <p class="text-cyan-700"><i class="fa-solid fa-circle-info ml-1"></i> لتفعيل هذا الزر:</p>
+                    <p>1) ارفع الملف على استضافة تدعم عرض HTML مباشرة برابط ثابت (مثل GitHub Pages أو Netlify Drop — وليس رابط معاينة Google Drive العادي، لأنه لا يعرض التطبيق التفاعلي بشكل صحيح).</p>
+                    <p>2) ضع الرابط في السطر الخاص بـ REMOTE_UPDATE_URL داخل الكود.</p>
+                    <p>3) بعدها سيقوم هذا الزر بجلب آخر نسخة رفعتها كل مرة يُضغط فيها.</p>
+                    <p class="text-slate-400 text-[10px]">أخبرني إن رغبت بمساعدتك في هذه الخطوة وسأرشدك تفصيلياً.</p>
+                `;
+                openUpdateModal();
+                return;
+            }
+            window.location.href = REMOTE_UPDATE_URL + (REMOTE_UPDATE_URL.includes('?') ? '&' : '?') + 'v=' + Date.now();
+        }
+
+        // ---------------- TEACHERS' WEEKLY CLASS SCHEDULE ----------------
+        const weekDays = [
+            {key:'sun', label:'الأحد'},
+            {key:'mon', label:'الاثنين'},
+            {key:'tue', label:'الثلاثاء'},
+            {key:'wed', label:'الأربعاء'},
+            {key:'thu', label:'الخميس'}
+        ];
+        const PERIOD_COUNT = 7;
+
+        function arabicOrdinal(n) {
+            const map = {1:'الأولى',2:'الثانية',3:'الثالثة',4:'الرابعة',5:'الخامسة',6:'السادسة',7:'السابعة'};
+            return map[n] || n;
+        }
+
+        // Each teacher is at a different school with a different bell schedule, so break/prayer
+        // position AND period times must be fully independent per teacher — never shared/global.
+        let teacherSettings = {};
+        function defaultTeacherSettings() {
+            const pt = {};
+            for (let i = 1; i <= PERIOD_COUNT; i++) pt['p'+i] = { start:'', end:'' };
+            pt.break = { start:'', end:'' };
+            pt.prayer = { start:'', end:'' };
+            return { breakAfterPeriod: 3, prayerAfterPeriod: 6, periodTimes: pt };
+        }
+        function initTeacherSettings() {
+            teacherOrder.forEach(t => {
+                if (!teacherSettings[t]) teacherSettings[t] = defaultTeacherSettings();
+            });
+        }
+        initTeacherSettings();
+
+        function buildPeriodCols(teacherKey) {
+            const s = teacherSettings[teacherKey];
+            const cols = [];
+            for (let i = 1; i <= PERIOD_COUNT; i++) {
+                cols.push({ key: 'p'+i, label: 'الحصة ' + arabicOrdinal(i), type: 'period' });
+                if (i === s.breakAfterPeriod) cols.push({ key: 'break', label: 'الفسحة', type: 'break' });
+                if (i === s.prayerAfterPeriod) cols.push({ key: 'prayer', label: 'الصلاة', type: 'break' });
+            }
+            return cols;
+        }
+
+        let teacherSchedules = {};
+        function initTeacherSchedules() {
+            teacherOrder.forEach(t => {
+                if (teacherSchedules[t]) return; // don't clobber existing data
+                teacherSchedules[t] = {};
+                weekDays.forEach(d => {
+                    teacherSchedules[t][d.key] = { dutyBreak: false, dutyPrayer: false };
+                    for (let i = 1; i <= PERIOD_COUNT; i++) teacherSchedules[t][d.key]['p'+i] = '';
+                    teacherSchedules[t][d.key].break = 'فسحة';
+                    teacherSchedules[t][d.key].prayer = 'صلاة';
+                });
+            });
+        }
+        initTeacherSchedules();
+
+        let activeSchedTeacher = 'faisal';
+        let schedEditMode = false;
+
+        function switchSchedTeacher(t) {
+            activeSchedTeacher = t;
+            renderSchedulePage();
+        }
+
+        function toggleScheduleEdit() {
+            if (!isEditor) return;
+            schedEditMode = !schedEditMode;
+            document.getElementById('sched-edit-label').textContent = schedEditMode ? 'حفظ الجدول' : 'تعديل الجدول';
+            renderSchedulePage();
+        }
+
+        function updateSchedCell(day, col, val) {
+            if (!isEditor) return;
+            teacherSchedules[activeSchedTeacher][day][col] = val;
+            renderWeeks();
+            renderTodayBox();
+        }
+        function updateDuty(day, kind, checked) {
+            if (!isEditor) return;
+            teacherSchedules[activeSchedTeacher][day][kind] = checked;
+        }
+        function updateTime(col, part, val) {
+            if (!isEditor) return;
+            teacherSettings[activeSchedTeacher].periodTimes[col][part] = val;
+            renderSchedulePage();
+        }
+        function updateBreakPosition(val) {
+            if (!isEditor) return;
+            const s = teacherSettings[activeSchedTeacher];
+            s.breakAfterPeriod = parseInt(val, 10);
+            if (s.breakAfterPeriod === s.prayerAfterPeriod) s.prayerAfterPeriod = Math.min(PERIOD_COUNT, s.breakAfterPeriod + 1);
+            renderSchedulePage();
+            renderWeeks();
+        }
+        function updatePrayerPosition(val) {
+            if (!isEditor) return;
+            const s = teacherSettings[activeSchedTeacher];
+            s.prayerAfterPeriod = parseInt(val, 10);
+            if (s.prayerAfterPeriod === s.breakAfterPeriod) s.breakAfterPeriod = Math.max(1, s.prayerAfterPeriod - 1);
+            renderSchedulePage();
+            renderWeeks();
+        }
+
+        function renderSchedulePage() {
+            const tabsEl = document.getElementById('sched-teacher-tabs');
+            tabsEl.innerHTML = '';
+            teacherOrder.forEach(key => {
+                const style = teacherStyles[key];
+                const btn = document.createElement('button');
+                const isActive = activeSchedTeacher === key;
+                btn.className = `text-xs font-bold px-3 py-2 rounded-xl border-2 transition ${isActive ? style.bg + ' ' + style.text + ' ' + style.border : 'bg-white text-slate-500 border-slate-200'}`;
+                btn.innerHTML = `<i class="fa-solid fa-user"></i> ${style.name}`;
+                btn.onclick = () => switchSchedTeacher(key);
+                tabsEl.appendChild(btn);
+            });
+
+            document.getElementById('sched-position-settings').classList.toggle('hidden', !(isEditor && schedEditMode));
+            const activeSettings = teacherSettings[activeSchedTeacher];
+            const breakSel = document.getElementById('break-position-select');
+            const prayerSel = document.getElementById('prayer-position-select');
+            breakSel.innerHTML = '';
+            prayerSel.innerHTML = '';
+            for (let i = 1; i <= PERIOD_COUNT; i++) {
+                breakSel.innerHTML += `<option value="${i}" ${i===activeSettings.breakAfterPeriod?'selected':''}>${i}</option>`;
+                prayerSel.innerHTML += `<option value="${i}" ${i===activeSettings.prayerAfterPeriod?'selected':''}>${i}</option>`;
+            }
+
+            const periodCols = buildPeriodCols(activeSchedTeacher);
+            const table = document.getElementById('sched-table');
+            let html = '<thead><tr class="bg-slate-800 text-white">';
+            html += '<th class="p-2 text-xs font-black">اليوم</th>';
+            periodCols.forEach(c => {
+                html += `<th class="p-2 text-xs font-black ${c.type === 'break' ? 'bg-slate-700' : ''}">${c.label}</th>`;
+            });
+            html += '</tr><tr class="bg-slate-100 text-slate-500">';
+            html += '<td class="p-1 text-[10px] font-bold">الوقت</td>';
+            periodCols.forEach(c => {
+                const t = activeSettings.periodTimes[c.key];
+                if (schedEditMode) {
+                    html += `<td class="p-1"><div class="flex items-center gap-0.5 justify-center">
+                        <input class="sched-cell-input w-12 border-b border-slate-300" placeholder="من" value="${t.start}" onchange="updateTime('${c.key}','start',this.value)">
+                        <span class="text-[9px]">-</span>
+                        <input class="sched-cell-input w-12 border-b border-slate-300" placeholder="إلى" value="${t.end}" onchange="updateTime('${c.key}','end',this.value)">
+                    </div></td>`;
+                } else {
+                    html += `<td class="p-1 text-[10px] font-bold">${t.start || '--'} - ${t.end || '--'}</td>`;
+                }
+            });
+            html += '</tr></thead><tbody>';
+
+            weekDays.forEach(d => {
+                html += `<tr class="border-t border-slate-100"><td class="p-2 text-xs font-black bg-slate-50">${d.label}</td>`;
+                periodCols.forEach(c => {
+                    const dayData = teacherSchedules[activeSchedTeacher][d.key];
+                    const val = dayData[c.key];
+                    const isBreakType = c.type === 'break';
+                    const dutyKey = c.key === 'break' ? 'dutyBreak' : 'dutyPrayer';
+                    const dutyOn = isBreakType ? !!dayData[dutyKey] : false;
+
+                    if (schedEditMode) {
+                        html += `<td class="p-1 ${isBreakType ? 'bg-slate-50' : ''}">
+                            <input class="sched-cell-input border-b border-slate-200" value="${(val||'').replace(/"/g,'&quot;')}" onchange="updateSchedCell('${d.key}','${c.key}',this.value)">
+                            ${isBreakType ? `<label class="flex items-center justify-center gap-1 text-[9px] font-bold text-slate-500 mt-0.5">
+                                <input type="checkbox" ${dutyOn?'checked':''} onchange="updateDuty('${d.key}','${dutyKey}',this.checked)"> مناوب
+                            </label>` : ''}
+                        </td>`;
+                    } else {
+                        html += `<td class="p-2 text-xs font-bold ${isBreakType ? 'bg-slate-50 text-slate-400' : (val ? 'text-slate-800' : 'text-slate-300')}">
+                            ${val || '—'}
+                            ${isBreakType && dutyOn ? '<div class="text-[9px] text-amber-600 font-black mt-0.5"><i class="fa-solid fa-user-shield"></i> مناوب</div>' : ''}
+                        </td>`;
+                    }
+                });
+                html += '</tr>';
+            });
+            html += '</tbody>';
+            table.innerHTML = html;
+        }
+
+        // ---------------- SAVE / SHARE (self-contained export, no server needed) ----------------
+        function openInstallModal() { document.getElementById('install-modal').classList.remove('hidden'); }
+        function closeInstallModal() { document.getElementById('install-modal').classList.add('hidden'); }
+        function openSaveGuideModal() {
+            document.getElementById('save-guide-number').textContent = `رقم الحفظ: ${saveNumber} — بتاريخ ${formatSaveDate(lastSaveDate)}`;
+            document.getElementById('save-guide-modal').classList.remove('hidden');
+        }
+        function closeSaveGuideModal() { document.getElementById('save-guide-modal').classList.add('hidden'); }
+
+        function exportUpdatedFile() {
+            if (!isEditor) return;
+            saveNumber += 1;
+            lastSaveDate = new Date().toISOString();
+            const state = {
+                resolvedCache, overridesStore, notesStore, teacherSchedules, teacherSettings,
+                hasActivated, currentActivatedPlan, currentActivatedSince, activePlan,
+                saveNumber, lastSaveDate
+            };
+            const stateJSON = JSON.stringify(state);
+            let html = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+            html = html.replace('/*__SAVED_STATE_MARKER__*/ let savedState = null;', '/*__SAVED_STATE_MARKER__*/ let savedState = ' + stateJSON + ';');
+            const blob = new Blob([html], { type: 'text/html;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            const now = new Date();
+            const stamp = now.getFullYear() + '-' + String(now.getMonth()+1).padStart(2,'0') + '-' + String(now.getDate()).padStart(2,'0');
+            a.href = url;
+            a.download = `التقويم_الدراسي_محدث_${stamp}_رقم${saveNumber}.html`;
+            document.body.appendChild(a);
+            a.click();
+            a.remove();
+            setTimeout(() => URL.revokeObjectURL(url), 4000);
+            renderInfo();
+            openSaveGuideModal();
+        }
+
+        function restoreFromSavedState() {
+            if (!savedState) return false;
+            if (savedState.resolvedCache) resolvedCache = savedState.resolvedCache;
+            if (savedState.overridesStore) overridesStore = savedState.overridesStore;
+            if (savedState.notesStore) notesStore = savedState.notesStore;
+            if (savedState.teacherSchedules) teacherSchedules = savedState.teacherSchedules;
+            if (savedState.teacherSettings) teacherSettings = savedState.teacherSettings;
+            initTeacherSettings(); // fill in defaults for any teacher missing from an older save
+            saveNumber = savedState.saveNumber || 0;
+            lastSaveDate = savedState.lastSaveDate || null;
+            hasActivated = !!savedState.hasActivated;
+            currentActivatedPlan = savedState.currentActivatedPlan || null;
+            currentActivatedSince = savedState.currentActivatedSince || null;
+            activePlan = savedState.activePlan || 1;
+            return true;
+        }
+
+        window.onload = function() {
+            const restored = restoreFromSavedState();
+            if (!restored) {
+                // default: adopt الخطة الثانية (يومين-يومين) اعتباراً من بداية التقويم
+                activatePlan(2, allDays[0].iso);
+                activePlan = 2;
+            }
+            applyEditorUI();
+            switchPlan(activePlan);
+            switchPage('calendar');
+        };
+    </script>
+</body>
+</html>
